@@ -88,7 +88,7 @@ const ChatBotDemo = () => {
       <div className="flex flex-col h-full">
         <Conversation className="h-full">
           <ConversationContent>
-            {messages.map((message) => (
+            {messages.map((message, messageIndex) => (
               <div key={message.id}>
                 {message.role === 'assistant' && message.parts.filter((part) => part.type === 'source-url').length > 0 && (
                   <Sources>
@@ -111,6 +111,9 @@ const ChatBotDemo = () => {
                   </Sources>
                 )}
                 {message.parts.map((part, i) => {
+                  const isLastMessage = messageIndex === messages.length - 1;
+                  const isLastTextPart = i === message.parts.filter(p => p.type === 'text').length - 1;
+                  
                   switch (part.type) {
                     case 'text':
                       return (
@@ -120,7 +123,7 @@ const ChatBotDemo = () => {
                               {part.text}
                             </MessageResponse>
                           </MessageContent>
-                          {message.role === 'assistant' && i === messages.length - 1 && (
+                          {message.role === 'assistant' && isLastMessage && isLastTextPart && (
                             <MessageActions>
                               <MessageAction
                                 onClick={() => regenerate()}
@@ -206,7 +209,7 @@ const ChatBotDemo = () => {
                 </PromptInputSelectContent>
               </PromptInputSelect>
             </PromptInputTools>
-            <PromptInputSubmit disabled={!input && !status} status={status} />
+            <PromptInputSubmit disabled={!input || status === 'streaming'} status={status} />
           </PromptInputFooter>
         </PromptInput>
       </div>

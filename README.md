@@ -22,15 +22,26 @@ A Next.js application that provides an AI-powered interface for chat, reasoning,
 
 2. Install dependencies:
    ```bash
-   pnpm install
+   npm install
    ```
 
-3. Run the development server:
+3. Configure environment variables:
    ```bash
-   pnpm dev
+   cp .env.example .env
+   ```
+   
+   Then edit `.env` and add your API keys:
+   - `OPENAI_API_KEY` - Required for OpenAI models (GPT-4o)
+   - `ANTHROPIC_API_KEY` - Required for Anthropic models (Claude)
+   
+   **Note:** You need at least one API key configured for the chat to work.
+
+4. Run the development server:
+   ```bash
+   npm run dev
    ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Scripts
 

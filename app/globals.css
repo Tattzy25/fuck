@@ -120,3 +120,95 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Markdown/Streamdown styling for message content */
+@layer components {
+  /* Prose styling for markdown content */
+  .streamdown {
+    @apply text-foreground;
+  }
+
+  .streamdown h1 {
+    @apply text-2xl font-bold mt-6 mb-4;
+  }
+
+  .streamdown h2 {
+    @apply text-xl font-bold mt-5 mb-3;
+  }
+
+  .streamdown h3 {
+    @apply text-lg font-semibold mt-4 mb-2;
+  }
+
+  .streamdown h4,
+  .streamdown h5,
+  .streamdown h6 {
+    @apply text-base font-semibold mt-3 mb-2;
+  }
+
+  .streamdown p {
+    @apply my-3 leading-7;
+  }
+
+  .streamdown a {
+    @apply text-primary underline underline-offset-4 hover:text-primary/80;
+  }
+
+  .streamdown ul,
+  .streamdown ol {
+    @apply my-3 ml-6 list-disc;
+  }
+
+  .streamdown ol {
+    @apply list-decimal;
+  }
+
+  .streamdown li {
+    @apply my-1;
+  }
+
+  .streamdown blockquote {
+    @apply border-l-4 border-border pl-4 italic my-4 text-muted-foreground;
+  }
+
+  .streamdown code {
+    @apply bg-muted px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+
+  .streamdown pre {
+    @apply bg-muted p-4 rounded-lg overflow-x-auto my-4;
+  }
+
+  .streamdown pre code {
+    @apply bg-transparent p-0;
+  }
+
+  .streamdown table {
+    @apply w-full border-collapse my-4;
+  }
+
+  .streamdown th {
+    @apply border border-border bg-muted px-4 py-2 text-left font-semibold;
+  }
+
+  .streamdown td {
+    @apply border border-border px-4 py-2;
+  }
+
+  .streamdown hr {
+    @apply my-6 border-border;
+  }
+
+  .streamdown strong {
+    @apply font-semibold;
+  }
+
+  .streamdown em {
+    @apply italic;
+  }
+
+  /* Fix for inline code in lists */
+  .streamdown li code {
+    @apply bg-muted/60;
+  }
+}
