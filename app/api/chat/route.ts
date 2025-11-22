@@ -49,6 +49,18 @@ export async function POST(req: Request) {
     } else if (provider === 'anthropic') {
       modelInstance = anthropic(modelName || 'claude-3-5-sonnet-20241022');
     } else if (provider === 'deepseek') {
+      // DeepSeek uses OpenAI-compatible API with its own API key
+      if (!process.env.DEEPSEEK_API_KEY) {
+        return new Response(
+          JSON.stringify({ 
+            error: 'DEEPSEEK_API_KEY is required for DeepSeek models. Please set it in your environment variables.' 
+          }),
+          { 
+            status: 500,
+            headers: { 'Content-Type': 'application/json' }
+          }
+        );
+      }
       modelInstance = openai(modelName || 'deepseek-r1');
     } else {
       // Default to openai gpt-4o if provider not recognized
